@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class text1{
+    public static void main(String args[]){
+        List<data> sales2021=new ArrayList<>();
+        List<data> sales2022=new ArrayList<>();
+        sales2021.add(new data("tea",120));
+        sales2021.add(new data("Coffee",230));
+        sales2021.add(new data("greentea",60));
+       
+
+        sales2022.add(new data("tea",100));
+        sales2022.add(new data("Coffee",250));
+        sales2022.add(new data("greentea",50));
+        
+        List<data> variances=new ArrayList<>();
+        List<data> variancepcts=new ArrayList<>();
+         
+        for(int i=0;i<sales2021.size();i++){
+             int variance=sales2022.get(i).getvalue()-sales2021.get(i).getvalue(); 
+             variances.add(new data(sales2022.get(i).getProduct(),variance));
+
+             double variancepct=((double)variance/sales2022.get(i).getvalue())*100;
+             variancepcts.add(new data(sales2022.get(i).getProduct(),variancepct));
+
+        }
+       
+       
+        System.out.println(variances);
+        System.out.println(variancepcts);
+       
+
+        
+       }
+}
+class data {
+    private String product;
+    private int value;
+    private double varpct;
+     public data(String product,int value){
+        this.product=product;
+        this.value=value;
+        
+
+     }
+     public data(String product,double varpct){
+        this.product=product;
+        this.varpct=varpct;
+     }
+     public int getvalue(){
+        return value;
+
+     }
+     public String getProduct(){
+        return product;
+     }
+     public String toString(){
+        return "{"+this.product+":"+this.value+":"+this.varpct+"}";
+     }
+
+    
+}
+
+
+
+output:
+[{tea:-20:0.0}, {Coffee:20:0.0}, {greentea:-10:0.0}]
+[{tea:0:-20.0}, {Coffee:0:8.0}, {greentea:0:-20.0}]
